@@ -22,14 +22,11 @@ public class Main {
 	
 	private static void createDatabaseConnection(){
 		String databaseUrl = "jdbc:mysql://54.148.117.243:3306/skiapp";
-		//String databaseUrl = "jdbc:postgresql://ec2-54-227-254-152.compute-1.amazonaws.com:5432";
 		ConnectionSource connectionSource;
 		try {
 			connectionSource = new JdbcConnectionSource(databaseUrl);
 			((JdbcConnectionSource)connectionSource).setUsername("ben");
 			((JdbcConnectionSource)connectionSource).setPassword("password");
-			//((JdbcConnectionSource)connectionSource).setUsername("zvemcyhogpgvts");
-			//((JdbcConnectionSource)connectionSource).setPassword("UqTp1KtmR8LhLTaTO2Z1E69p_e");
 			DataSourceManager.setConnectionSource(connectionSource);
 		} catch (SQLException e) {
 			e.printStackTrace();

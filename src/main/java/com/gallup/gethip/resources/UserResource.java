@@ -15,6 +15,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
 import com.gallup.gethip.DataSourceManager;
+import com.gallup.gethip.model.Employee;
 import com.gallup.gethip.model.User;
 import com.j256.ormlite.dao.Dao;
 
@@ -38,6 +39,58 @@ public class UserResource {
 			// throw error message
 		}
     	return user;
+    }
+    
+    @DELETE
+    @Produces("text/plain")
+    public String deleteEmployee(@QueryParam("userId") String userId){
+    	try {
+			int num = getDao().deleteById(userId);
+			if(num == 1){
+				return "Delete successful";
+			}else{
+				return "Unable to delete";
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return "Error in sql statement";
+		}
+    }
+    
+    @POST
+    @Produces("application/json")
+    @Consumes("application/json")
+    public User createUser(User user){
+    	try {
+			User userPrime = getDao().createIfNotExists(user);
+			if(userPrime == null){
+				// handle error
+			}else{
+				return userPrime;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return  null;
+    }
+    
+    @PUT
+    @Produces("text/plain")
+    @Consumes("application/json")
+    public String updateUser(User user){
+    	try {
+			int num = getDao().update(user);
+			if(num == 1){
+				return "Update successful for employee " + user.getUserId();
+			}else{
+				return "Could not update " + user.getUserId();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "Error updating " + user.getUserId();
+		}
     }
     	
     private Dao<User, String> getDao(){
