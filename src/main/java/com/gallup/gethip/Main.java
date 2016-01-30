@@ -1,7 +1,6 @@
 
 package com.gallup.gethip;
 
-import com.gallup.gethip.model.Employee;
 import com.gallup.gethip.model.User;
 import com.gallup.gethip.model.Order;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;

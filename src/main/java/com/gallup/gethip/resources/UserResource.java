@@ -15,7 +15,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
 import com.gallup.gethip.DataSourceManager;
-import com.gallup.gethip.model.Employee;
 import com.gallup.gethip.model.User;
 import com.j256.ormlite.dao.Dao;
 
@@ -43,7 +42,7 @@ public class UserResource {
     
     @DELETE
     @Produces("text/plain")
-    public String deleteEmployee(@QueryParam("userId") String userId){
+    public String deleteUser(@QueryParam("userId") String userId){
     	try {
 			int num = getDao().deleteById(userId);
 			if(num == 1){
